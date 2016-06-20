@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "踩到过的坑"
-date: 2016-06-20 11:36
-category: php-basic
+description: ""
+category: 
 tags: []
 ---
 
@@ -63,3 +63,4 @@ tags: []
     3.一般情况下，还是用iconv函数，只有当遇到无法确定原编码是何种编码，或者iconv转化后无法正常显示时才用mb_convert_encoding 函数 。
     
 ----
+{% include JB/setup %}
