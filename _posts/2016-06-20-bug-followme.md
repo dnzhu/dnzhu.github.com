@@ -2,6 +2,7 @@
 layout: post
 title: "踩到过的坑"
 date: 2016-06-20 11:36
+category: php-basic
 tags: []
 ---
 
