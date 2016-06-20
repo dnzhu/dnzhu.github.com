@@ -2,7 +2,7 @@
 layout: post
 title: "踩到过的坑"
 description: ""
-category: 
+category: debug
 tags: []
 ---
 
