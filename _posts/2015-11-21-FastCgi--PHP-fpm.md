@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "fast-cgi与php-fpm的关系"
+title: "fast-cgi与php-fpm区别"
 description: ""
 category: php-basic
 tags: []
