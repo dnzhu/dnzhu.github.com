@@ -1,11 +1,12 @@
 ---
 layout: page
 title: "AboutMe"
-header: Pages
 group: navigation
 ---
 
 ---
-tell a little abount youself.
+
+本人就是一枚小小的屌丝程序员。
+
 ---
 {% include JB/setup %}
