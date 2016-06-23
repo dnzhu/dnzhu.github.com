@@ -400,8 +400,8 @@ tags: []
 ps： 作者即懂代码又会写小说，真是位闷骚写手。在此膜拜。
 
 ---
-链接：https://www.zhihu.com/question/32422838/answer/91389296
-来源：知乎
+
+来源：[知乎-萧十一郎](https://www.zhihu.com/question/32422838/answer/91389296)
 
 ---
 
