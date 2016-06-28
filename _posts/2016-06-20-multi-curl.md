@@ -2,7 +2,7 @@
 layout: post
 title: "curl多线程数据抓取"
 description: ""
-category: 
+category: other
 tags: [curl]
 ---
 
