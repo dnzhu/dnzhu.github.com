@@ -67,3 +67,92 @@ demo ：
 du -sh /root        //查看root所占的磁盘容量
 du -b hello.html    //查看hello.html 文件的字节数
 ```
+
+### 查看文件内容(cat,more ,less,head, tail)
+
+demo :
+
+```
+cat -b hello.html   //忽略空白行，显示行号
+cat -n hello.html   //显示行号，包括空行
+
+more hello.html     //通过空格键查看下一页
+less hello.html     //通过方向键上下翻页
+
+head -c 20k  hello.html     //显示hello文件前20k的内容
+head -20  hello.html        //显示hello文件前20行内容
+
+tail -c 20k hello.html      //显示hello文件末尾20k的内容
+tail -20 hello.html         //显示hello文件末尾20行的内容
+*tail -f hello.html          //动态的显示文件的内容 
+
+wc -l hello.html            //显示文件的行数
+wc -c hello.html            //显示文件的字节数
+wc -w hello.html            //显示文件的单词个数
+
+```
+
+### grep 查找关键词并打印出匹配行
+
+格式：grep [选项] 匹配模式 [文件]
+
+选项：
+
+* -i 忽略大小写。
+* -v 取反匹配。
+* -w 匹配单词。
+* --color 显示颜色。
+
+demo：
+
+```
+grep love hello.html            //在hello文件中查找love，并将匹配出的内容打印出来。
+grep --color love hello.html    //对匹配的关键词显示颜色
+grep -i like hello.html         //忽略大小写匹配
+grep -v love hello.html         //不匹配love的行
+
+```
+
+### ln 链接文件
+
+格式： ln [选项] [文件]
+
+demo ： 
+
+```
+ln -s /usr/hello.html  /tmp/runtime/hello.html      //创建软链接文件
+ln -s /usr/software/    /tmp/software               //创建软链接目录
+
+ln /usr/hello.html  /tmp/test/hello.html            //创建硬链接文件
+
+```
+### tar 打包与解包文件
+
+参数：
+
+* -c    创建打包文件
+* -r    追加文件到打包文件。
+* -t    列出打包文档的内容。
+* -x    释放打包文件。
+* -C    指定解压路径。
+* -f    指定打包后的名称。
+* -j    通过bzip2格式解压。
+* -z    通过gzip格式解压。
+* --remove-files    打包后删除源文件。
+
+demo ：
+
+```
+tar -zxvf   bootstrap.tar.gz        //解压gzip文件
+tar -jxvf   bootstrap.tar.bz2       //解压bzip2文件
+
+```
+
+
+
+
+
+
+
+
+
