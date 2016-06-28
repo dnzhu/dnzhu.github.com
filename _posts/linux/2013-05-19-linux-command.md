@@ -126,6 +126,7 @@ ln -s /usr/software/    /tmp/software               //创建软链接目录
 ln /usr/hello.html  /tmp/test/hello.html            //创建硬链接文件
 
 ```
+
 ### tar 打包与解包文件
 
 参数：
