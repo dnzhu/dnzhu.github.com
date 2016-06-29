@@ -152,7 +152,7 @@ tar -jxvf   bootstrap.tar.bz2       //解压bzip2文件
 
 
 
-
+{% include JB/setup %}
 
 
 
