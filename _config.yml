@@ -84,7 +84,7 @@ JB :
   comments :
     provider : duoshuo
     duoshuo :
-      short_name : dnzhu
+      short_name : duoshuo
   #   disqus :
   #     short_name : jekyllbootstrap
   #   livefyre :
