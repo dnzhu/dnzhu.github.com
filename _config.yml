@@ -81,8 +81,10 @@ JB :
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.
   #
-  # comments :
-  #   provider : disqus
+  comments :
+    provider : duoshuo
+    duoshuo :
+      short_name : dnzhu
   #   disqus :
   #     short_name : jekyllbootstrap
   #   livefyre :
@@ -94,8 +96,6 @@ JB :
   #     num_posts: 5
   #     width: 580
   #     colorscheme: light
-  #   duoshuo :
-  #     short_name : jekyllbootstrap
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.

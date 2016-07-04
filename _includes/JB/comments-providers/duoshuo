@@ -1,7 +1,7 @@
 <!-- Duoshuo Comment BEGIN -->
-  <div class="ds-thread"{% if page.wordpress_id %} data-thread-key="{{page.wordpress_id}}"{% endif %}></div>
+  <div class="ds-thread" data-title="{{ page.title }}" data-url="{{ site.production_url }}{{ page.url }}"></div>
 <script type="text/javascript">
-var duoshuoQuery = {short_name:'{{ site.JB.comments.duoshuo.short_name }}'};
+var duoshuoQuery = {short_name:"{{ site.JB.comments.duoshuo.short_name }}"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
