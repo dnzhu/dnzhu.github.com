@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "linux性能监控和网络配置"
+title: "linux性能和网络监控命令"
 description: ""
 category: linux
 tags: []
