@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "redis的数据结构之跳跃表与压缩表"
+title: "redis数据结构之跳跃表与压缩表"
 description: ""
 category: redis
 tags: []
@@ -20,6 +20,7 @@ tags: []
 - **Length** ： 记录跳跃表的长度（包含的节点的数量）。
 
 ---
+
 跳跃表结构图：
 
 ![跳跃表](http://pic.xcar.com.cn/2016/07/26/3e021264968c79b43c1dc14dc722ce32.png)
