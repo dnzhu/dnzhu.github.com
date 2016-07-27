@@ -31,7 +31,7 @@ Encoding属性记录了对象所使用的编码，什么样的编码对应对象
 **对象编码的数据结构**：
 
 
-|编码常量  |  编码对应底层数据结构 |
+|编码常量  |  编码对应数据结构 |
 | -------- | --------------------- |
 | REDIS_ENCODING_INT | \| Long类型的整数 |
 | REDIS_ENCODING_EMBSTR | \|  Embstr编码的简单动态字符串 |
@@ -51,12 +51,12 @@ Encoding属性记录了对象所使用的编码，什么样的编码对应对象
 | REDIS_STRING | \| REDIS_ENCODING_INT | \| 使用整数值实现的字符串对象 |
 | REDIS_STRING | \| REDIS_ENCODING_EMBSTR | \| 使用embstr编码的字符串对象 |
 |REDIS_STRING | \| REDIS_ENCODING_RAW | \| 使用简单动态字符串实现的字符串对象|
-|REDIS_LIST | \| REDIS_ENCODING_ZIPLIST | \| 使用压缩列表实现的列表对象|
-|REDIS_LIST | \| REDIS_ENCODING_LINKEDLIST | \| 使用双端列表实现的列表对象|
-|REDIS_HASH | \| REDIS_ENCODING_HT | \|  使用字典实现的哈希对象|
-|REDIS_HASH | \| REDIS_ENCODING_ZIPLIST | \| 使用压缩列表实现的哈希对象|
-|REDIS_SET | \|  REDIS_ENCODING_INTSET | \|  使用整数集合编码实现的集合对象|
-|REDIS_SET | \|  REDIS_ENCODING_HT  | \| 使用字典实现的集合对象|
+|REDIS_LIST | \| REDIS_ENCODING_ZIPLIST| \| 使用压缩列表实现的列表对象|
+|REDIS_LIST| \|REDIS_ENCODING_LINKEDLIST| \| 使用双端列表实现的列表对象|
+|REDIS_HASH| \|REDIS_ENCODING_HT| \| 使用字典实现的哈希对象|
+|REDIS_HASH| \|REDIS_ENCODING_ZIPLIST | \|使用压缩列表实现的哈希对象|
+|REDIS_SET | \| REDIS_ENCODING_INTSET | \|使用整数集合编码实现的集合对象|
+|REDIS_SET | \|  REDIS_ENCODING_HT | \|使用字典实现的集合对象|
 |REDIS_ZSET | \| REDIS_ENCODING_ZIPLIST | \| 使用压缩列表实现的有序集合对象|
 |REDIS_ZSET | \| REDIS_ENCODING_SKIPLIST| \| 使用跳跃比实现的有序集合对象|
 
