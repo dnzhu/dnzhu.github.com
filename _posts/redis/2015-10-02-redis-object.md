@@ -74,6 +74,7 @@ Encoding属性记录了对象所使用的编码，什么样的编码对应对象
     如果字符串对象保存的值是一个字符串值，并且字符串的长度大于32个字节，那么redis字符串对象的编码将设置为REDIS_ENCODING_RAW。
 
     embstr编码是专门用于保存短字符串的一种优化编码方式，和raw一样，都是使用sdshdr结构来便是字符串对象，但是raw会两次调用内存分配函数分别创建redisObject和sdshdr结构，而embstr编码只会调用一次内存分配函数来分配一块连续的内存空间，依次保存redisObject和sdshdr。
+    
 ---
 
 **(2).使用embstr编码的好处是：**
