@@ -3,7 +3,7 @@ layout: post
 title: "bash 基本概念"
 description: ""
 category: linux
-tags: []
+tags: [bash]
 ---
 
 > 在linux系统中，有很多种shell可以选择，比如：/bin/sh,/bin/bash,/bin/tcsh,/bin/csh 。在/etc/shells文件中可以查看当前系统支持几种shell。不同的shell都有自己不同的特点和操作方式。
