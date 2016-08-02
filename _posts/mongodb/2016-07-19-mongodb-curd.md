@@ -146,7 +146,11 @@ mongo提供的api：
 * db.collection.updateMany() New in version 3.2
 * db.collection.replaceOne() New in version 3.2
 
-<div><img src="{{BASE_PATH}}/assets/imgs/20160802150521.png" alt="update" /></div>
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <img src="{{BASE_PATH}}/assets/imgs/20160802150521.png" alt="update" />
+    </div>
+</div>
 
 ```
 demo1:
