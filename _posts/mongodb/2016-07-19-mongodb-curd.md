@@ -270,3 +270,53 @@ Query on Arrays:
     db.users.find( { finished: { $elemMatch: { $gt: 15, $lt: 20 } } } )
 
 ```
+
+#### 查询值为Null或不存在的字段
+
+演示文档：
+
+```
+    db.users.insert(
+       [
+          { "_id" : 900, "name" : null },
+          { "_id" : 901 }
+       ]
+    )
+
+```
+demo:
+
+```
+    db.users.find( { name: null } )
+```
+
+return:
+
+```
+    { "_id" : 900, "name" : null }
+    { "_id" : 901 }
+```
+
+#### 类型筛查
+
+{ name : { $type: 10 } } 查询 仅仅 匹配那些包含值是 null 的 name 字段的文档,亦即 条目 字段的值是BSON类型中的 Null (即 10 ):
+
+```
+demo:
+    db.users.find( { name : { $type: 10 } } )
+
+return:
+    { "_id" : 900, "name" : null }
+```
+
+#### 存在性筛查
+
+```
+demo:
+    db.users.find( { name : { $exists: false } } )
+
+return:
+
+    { "_id" : 901 }
+```
+
