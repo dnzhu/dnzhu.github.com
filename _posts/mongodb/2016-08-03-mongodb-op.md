@@ -116,8 +116,8 @@ db.col.find().limit(number).skip(number)
 **sort()方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而-1是用于降序排列。**
 
 ```
-db.COLLECTION_NAME.find().sort({KEY:1})     asc
-db.COLLECTION_NAME.find().sort({KEY:-1})    desc
+db.col.find().sort({KEY:1})     asc
+db.col.find().sort({KEY:-1})    desc
 ```
 ---
 
@@ -126,7 +126,7 @@ db.COLLECTION_NAME.find().sort({KEY:-1})    desc
 ### ensureIndex() 方法
 
 ```
-db.COLLECTION_NAME.ensureIndex({KEY:1})
+db.col.ensureIndex({KEY:1})
 ```
 
 可以设置使用多个字段创建索引(关系型数据库中称作复合索引)：
@@ -175,21 +175,24 @@ db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
 
 |表达式 | 描述 |
 | ----- | ---- |
-| $sum  \||  计算总和。|
-| $avg  \||  计算平均值。 |
-| $min  \||  获取集合中所有文档对应值得最小值。|
-| $max   \|| 获取集合中所有文档对应值得最大值。|
-| $push  \|| 在结果文档中插入值到一个数组中。  |
-| $addToSet \||  在结果文档中插入值到一个数组中，但不创建副本。|
-| $first \|| 根据资源文档的排序获取第一个文档数据。|
-| $last  \|| 根据资源文档的排序获取最后一个文档数据。|
+| $sum \| |  计算总和。|
+| $avg \| |  计算平均值。 |
+| $min \| |  获取集合中所有文档对应值得最小值。|
+| $max  \| | 获取集合中所有文档对应值得最大值。|
+| $push \| | 在结果文档中插入值到一个数组中。  |
+| $addToSet\| |  在结果文档中插入值到一个数组中，但不创建副本。|
+| $first \| | 根据资源文档的排序获取第一个文档数据。|
+| $last \| | 根据资源文档的排序获取最后一个文档数据。|
 
+---
 
 **管道的概念**
 
-Linux中一般用于将当前命令的输出结果作为下一个命令的输入参数。
+    Linux中一般用于将当前命令的输出结果作为下一个命令的输入参数。
 
-MongoDB的聚合管道将MongoDB文档在一个管道处理完毕后将结果传递给下一个管道处理。管道操作是可以重复的。
+    MongoDB的聚合管道将MongoDB文档在一个管道处理完毕后将结果传递给下一个管道处理。管道操作是可以重复的。
+
+---
 
 聚合框架中常用的几个操作：
 
