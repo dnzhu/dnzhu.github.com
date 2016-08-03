@@ -2,6 +2,8 @@
 layout: page
 title: "Mongodb 查询条件及优化"
 description: ""
+category: mongodb
+tags: []
 ---
 
 ## mongo 的数据库操作
@@ -9,7 +11,7 @@ description: ""
 ### 创建数据库
 
 ```
-use DATABASE_NAME
+use database
 ```
 如果数据库不存在，则创建数据库，否则切换到指定数据库。
 
