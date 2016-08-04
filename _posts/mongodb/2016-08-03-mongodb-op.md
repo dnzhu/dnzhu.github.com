@@ -48,6 +48,18 @@ db.collection.drop()
 ```
 ----
 
+### 备份
+```
+mongodump -h dbhost -d dbname -o dbdirectory
+```
+---
+
+### 恢复
+```
+mongorestore -h dbhost -d dbname --directoryperdb dbdirectory    
+```
+---
+
 ## mongodb的查询条件
 
 ### AND 条件
