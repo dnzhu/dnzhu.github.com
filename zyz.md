@@ -24,8 +24,10 @@ group: navigation
 
 ---
 
-QQ:四二二二九八一四零
-email：dnzhu_master@126.com
-github：https://github.com/dnzhu 
+**QQ:四二二二九八一四零**
+
+**email：dnzhu_master@126.com**
+
+**github：https://github.com/dnzhu**
 
 ---
