@@ -17,7 +17,7 @@ tags: []
     
     - 查看所有log的参数
       
-            show variables like '%log%';
+        show variables like '%log%';
 
 - 设置没有索引的记录到慢查询日志
 
@@ -29,7 +29,7 @@ tags: []
     
     - 设置记录的延迟时间
     
-            set global long_query_time=1;
+        set global long_query_time=1;
 
 - 开启慢查询日志
 
@@ -128,11 +128,11 @@ tags: []
 
 limit常用与分页处理，时常会伴随着order by 从句使用，因此大多时候会使用filesorts,这样会造成大量的IO问题
 
-        SELECT film_id,description FROM sakila.film ORDER BY title LIMIT 50,5
+    SELECT film_id,description FROM sakila.film ORDER BY title LIMIT 50,5
 
 - 优化步骤1：使用有索引的列或者主键进行Oder by操作
 
-        SELECT film_id,description FROM sakila.film ORDER BY film_id LIMIT 50,5; 
+    SELECT film_id,description FROM sakila.film ORDER BY film_id LIMIT 50,5; 
 
 - 优化步骤2：记录上一次返回的主键，在下次查询时使用主键过滤
 
@@ -151,26 +151,27 @@ limit常用与分页处理，时常会伴随着order by 从句使用，因此大
 - 索引字段越小越好
 - 离散度大的列放在联合索引前面
 
-        SELECT * FROM payment WHERE staff_id=2 AND customer_id=584;
+    SELECT * FROM payment WHERE staff_id=2 AND customer_id=584;
         
-        *由于customer_id的离散度更大，应该建立索引 index(customer_id,staff_id)，即把离散程度高的列放在联合索引的前面
+    *由于customer_id的离散度更大，应该建立索引 index(customer_id,staff_id)，即把离散程度高的列放在联合索引的前面
 
     - 判断列的离散程度（唯一值越多，离散度越高，可选择性越高）
     
-            SELECT count(distinct customer_id),count(distinct staff_id) FROM payment;
+        SELECT count(distinct customer_id),count(distinct staff_id) FROM payment;
             
 ### 2. 索引优化SQL的方法
 
 1. 索引的维护及优化 - 重复及冗余索引
 
-重复索引是只相同的列以相同的顺序简历同类型的索引，如下表中`primary key` 和`ID`列上的索引就是重复索引
+重复索引是只相同的列以相同的顺序简历同类型的索引，如下表中`primary key` 和`ID`列上的索引就是重复索引。
 
-        CREATE table test(
-            id init not null primary key,
-            name varchar(10) not null,
-            title varchar(50) not null,
-            unique(id)
-        )engine=innodb;
+    CREATE table test(
+        id init not null primary key,
+        name varchar(10) not null,
+        title varchar(50) not null,
+        unique(id)
+    )engine=innodb;
+
         
  2. 索引的维护及优化 - 查找重复及冗余索引 
 
@@ -280,34 +281,34 @@ limit常用与分页处理，时常会伴随着order by 从句使用，因此大
 
 网络方面的配置，要修改/etc/sysctl.conf
 
-        #增加tcp支持的队列数
-        net.ipv4.tcp_max_syn_backlog = 65535
-        #减少断开连接时，资源回收
-        net.ipv4.tcp_max_tw_buckets = 8000
-        net.ipv4.tcp_tw_reuse = 1
-        net.ipv4.tcp_tw_recycle = 1
-        net.ipv4.tcp_fin_timeout = 10
+    #增加tcp支持的队列数
+    net.ipv4.tcp_max_syn_backlog = 65535
+    #减少断开连接时，资源回收
+    net.ipv4.tcp_max_tw_buckets = 8000
+    net.ipv4.tcp_tw_reuse = 1
+    net.ipv4.tcp_tw_recycle = 1
+    net.ipv4.tcp_fin_timeout = 10
         
 打开文件数的限制，可以使用ulimit -a查看目录的各位限制，可以修改/etc/security/limits.conf文件，增加以下内容以修改打开文件数量的限制
 
-        soft nofile 65535
-        hard nofile 65535
+    soft nofile 65535
+    hard nofile 65535
 
 ### 2. MySQL配置文件优化
 
-        innodb_buffer_pool-size：非常重要的一个参数，用于配置Innodb的缓冲池，如果数据库中个只有Innodb表，则推荐配置量为总内存的75%.
-        
-        innodb_buffer_pool_instances:Mysql5.5中新增加参数，可以控制缓冲池的个数，默认情况下只有一个缓冲池
-        
-        Innodb_log_buffer_size:innodb log 缓冲的大小，由于日志最长每秒钟就会刷新所以一般不用太大
-        
-        innodb_flush_log_at_trx_commit:关键参数，对innodb的IO效率影响很大。默认值为1,可以取0,1,2三个值，一般建议设为2，但如果数据安全性要求比较高则使用默认值1.
-        
-        innodb_read_io_threads,innodb_write_io_threads：决定了Innodb读写的IO进程数，默认为4
-        
-        innodb_file_per_table:关键参数，控制Innodb每一个表使用独立的表空间，默认为off，也就是所有表都会建立在共享表空间中
-        
-        innodb_stats_on_metadata:决定了Mysql在什么情况下会刷新innodb表的统计信息
+    innodb_buffer_pool-size：非常重要的一个参数，用于配置Innodb的缓冲池，如果数据库中个只有Innodb表，则推荐配置量为总内存的75%.
+    
+    innodb_buffer_pool_instances:Mysql5.5中新增加参数，可以控制缓冲池的个数，默认情况下只有一个缓冲池
+    
+    Innodb_log_buffer_size:innodb log 缓冲的大小，由于日志最长每秒钟就会刷新所以一般不用太大
+    
+    innodb_flush_log_at_trx_commit:关键参数，对innodb的IO效率影响很大。默认值为1,可以取0,1,2三个值，一般建议设为2，但如果数据安全性要求比较高则使用默认值1.
+    
+    innodb_read_io_threads,innodb_write_io_threads：决定了Innodb读写的IO进程数，默认为4
+    
+    innodb_file_per_table:关键参数，控制Innodb每一个表使用独立的表空间，默认为off，也就是所有表都会建立在共享表空间中
+    
+    innodb_stats_on_metadata:决定了Mysql在什么情况下会刷新innodb表的统计信息
 
     
 ### 3. 第三方工具 Percon Configuration Wizard
