@@ -149,7 +149,30 @@ tar -jxvf   bootstrap.tar.bz2       //解压bzip2文件
 
 ```
 
+### rsync 推送的命令
 
+rsync命令是基于rsync服务，rsync服务不是独立的服务，而是基于**xinetd**。所以要使用该命令，必须在服务器上安装xinetd服务。
+
+---
+
+### ps 查看系统自启动服务
+
+```
+ps aux 查看系统自启动服务
+```
+---
+
+### netstat 查看系统开启了哪些服务
+
+* -t 列出tcp服务
+* -u 列出udp服务
+* -l 列出正在监听的网络服务
+* -n 用端口号来显示服务
+* -p 列出该服务的进程ID
+
+```
+netstat -tlunp   
+```
 
 
 {% include JB/setup %}
