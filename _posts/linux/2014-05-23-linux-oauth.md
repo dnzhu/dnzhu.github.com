@@ -95,5 +95,26 @@ demo：
     setfacl -x g:dnzhu  hello.html      #删除dnzhu对hello的读写权限
     setfacl -b hello                    #删除所有的附加acl条目
 ```
+
+---
+
+### chattr 修改文件属性权限
+
+**格式：** chattr [参数]  文件 |目录
+
+```
+参数：
+    -i     对文件设置-i属性，那么不能对文件进行删除，修改或者改名；对目录设置了i属性，那么只能修改目录下文件的数据，不能新建或者删除目录下的文件。
+
+    -a (append)     如果对文件设置a属性，那么只能对文件新增数据，不能删除或者修改；如果对目录使用-a属性，那么只允许在目录中新建或者修改文件，不允许删除。 
+
+```
+    
+    chattr +i filename      给filename设置只读权限，相当于文件被锁，对root账户生效。
+    chattr +i directory     给目录设置i权限，该目录只能修改其中的文件，不能新增或者删除。
+    lsattr -a directory     查看目录中文件属性权限。
+    chattr -i filename      取消filename文件的i属性。
+
+
 {% include JB/setup %}
 
