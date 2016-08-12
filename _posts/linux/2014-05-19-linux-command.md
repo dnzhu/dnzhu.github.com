@@ -173,6 +173,15 @@ ps aux 查看系统自启动服务
 ```
 netstat -tlunp   
 ```
+---
+
+### mount与umount
+
+    mount   查看挂载硬件
+
+    mount /dev/sr0  /mnt/cdrom/     挂载硬件
+
+---
 
 
 {% include JB/setup %}
