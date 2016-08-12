@@ -123,13 +123,15 @@ tags: []
 **安装：**
 
     yum  install  全部安装
+    yum -y install  全部安装(自动完成)
     yum  install  package1   安装指定的包 package1
     yum  groupinstall  group1  安装指定的组 group1
 
 **更新：**
 
-    yum  update   全部更新
-    yum  update  package1  更新指定的包 package1
+    yum  update  全部更新(命令慎用，linux内核也会升级，升级后的linux内核是需要配置)。
+    yum -y update 全部更新(自动完成)
+    yum  update  package1  更新指定的包 package1 (推荐使用升级指定的软件包)
     yum  check-update  检查可更新的程序
     yum  upgrade  package1  升级软件
     yum  groupupdate  group1  升级程序组 
@@ -140,8 +142,11 @@ tags: []
     yum  list  显示所有的安装包
     yum  list  package1  显示指定包的安装情况
     yum  list  installed   显示已安装软件包
+    yum search package     查询包以及包的依赖关系
 
 **删除：**
+
+    慎用yum卸载，因为都是自动完成，卸载一个软件，依赖该软件的包都会卸载，又可能还有其他软件有依赖关系。这时就有可能导致问题出现。
 
     yum  remove or erase  package1   删除程序包 package1
     yum  groupremove  group1    删除程序组 group1
