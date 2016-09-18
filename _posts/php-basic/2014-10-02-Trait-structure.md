@@ -15,6 +15,7 @@ tags: []
     2.避免了传统多继承类臃肿的问题。在一定程度上，减少了多继承的复杂性。
 
     3.能够水平扩展功能。增加的扩展功能的灵活性。
+
 ---
 
 ### 优先级
@@ -22,34 +23,35 @@ tags: []
 优先顺序是当前类中的方法会覆盖 trait 方法，而 trait 方法又覆盖了基类中的方法。 
 
 官方demo：
+
 ```
 <?php
-    class Base {
-        public function sayHello() {
-            echo 'Hello ';
-        }
+class Base {
+    public function sayHello() {
+        echo 'Hello ';
     }
+}
 
-    trait SayWorld {
-        public function sayHello() {
-            parent::sayHello();
-            echo 'World!';
-        }
+trait SayWorld {
+    public function sayHello() {
+        parent::sayHello();
+        echo 'World!';
     }
+}
 
-    class MyHelloWorld extends Base {
-        use SayWorld;
-    }
+class MyHelloWorld extends Base {
+    use SayWorld;
+}
 
-    $o = new MyHelloWorld();
-    $o->sayHello();
+$o = new MyHelloWorld();
+$o->sayHello();
 ?>
-
 
 输出结果：
     Hello World!
 
 ```
+
 ----
 
 ### 多个 trait
@@ -58,49 +60,46 @@ tags: []
 
 ```
 <?php
-    trait Hello {
-        public function sayHello() {
-            echo 'Hello ';
-        }
+trait Hello {
+    public function sayHello() {
+        echo 'Hello ';
     }
+}
 
-    trait World {
-        public function sayWorld() {
-            echo 'World';
-        }
+trait World {
+    public function sayWorld() {
+        echo 'World';
     }
+}
 
-    class MyHelloWorld {
-        use Hello, World;
-        public function sayExclamationMark() {
-            echo '!';
-        }
+class MyHelloWorld {
+    use Hello, World;
+    public function sayExclamationMark() {
+        echo '!';
     }
+}
 
-    $o = new MyHelloWorld();
-    $o->sayHello();
-    $o->sayWorld();
-    $o->sayExclamationMark();
+$o = new MyHelloWorld();
+$o->sayHello();
+$o->sayWorld();
+$o->sayExclamationMark();
 ?>
 
-
 输出结果：
-
-Hello World!
-
-```
-----
-
-###　冲突的解决
-
-如果两个 trait 都插入了一个同名的方法，如果没有明确解决冲突将会产生一个致命错误。
-
-为了解决多个 trait 在同一个类中的命名冲突，需要使用 insteadof 操作符来明确指定使用冲突方法中的哪一个。
-
-以上方式仅允许排除掉其它方法，as 操作符可以将其中一个冲突的方法以另一个名称来引入。 
+    Hello World!
 
 ```
 
+### 冲突的解决
+
+
+    如果两个 trait 都插入了一个同名的方法，如果没有明确解决冲突将会产生一个致命错误。
+
+    为了解决多个 trait 在同一个类中的命名冲突，需要使用 insteadof 操作符来明确指定使用冲突方法中的哪一个。
+
+    以上方式仅允许排除掉其它方法，as 操作符可以将其中一个冲突的方法以另一个名称来引入。 
+
+```
 <?php
 trait A {
     public function smallTalk() {
@@ -164,6 +163,9 @@ class Aliased_Talker {
 ?>
 
 ```
+
+**之所以把trait的用法保存下来，主要是以前没有经常使用这种写法，以后可以在实际的项目中尝试，肯定能在编码的时候带来一定的优势。**
+
 
 
 
