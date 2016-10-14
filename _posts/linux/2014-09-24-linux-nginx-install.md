@@ -3,7 +3,7 @@ layout: post
 title: "nginx安装"
 description: ""
 category: linux
-tags: []
+tags: [lnmp]
 
 ---
 
