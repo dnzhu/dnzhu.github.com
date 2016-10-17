@@ -9,7 +9,9 @@ tags: [lnmp]
 
 ### 安装环境：
 
-1.centos 6.8  x86_64    mysql-5.5.32-linux2.6-x86_64.tar.gz
+    centos 6.8  
+    x86_64   
+    mysql-5.5.32-linux2.6-x86_64.tar.gz
 
 ### 步骤：
 
