@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "xcache安装配置"
-description: ""
+title: "php缓存加速器xcache安装配置"
+description: "xcache安装配置"
 category: php-core
 tags: [cache]
 ---
