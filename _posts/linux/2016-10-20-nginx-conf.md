@@ -67,7 +67,7 @@ ps：配置该项过后，进行top命令查看cpu的负载情况，差别不是
 
 #### 1.nginx事件处理模型选择
 
-根据不同的系统选择不同的事件处理模型，可供选择有：“kqueue  |  rstig |  epoll  |  /dev/poll |  select |  poll ”。
+根据不同的系统选择不同的事件处理模型，可供选择有：“kqueue ，rstig ，epoll ，/dev/poll ， select ，poll ”。
 
 ```
 events {
