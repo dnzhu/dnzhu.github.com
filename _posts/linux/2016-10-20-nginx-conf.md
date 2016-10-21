@@ -67,14 +67,14 @@ ps：配置该项过后，进行top命令查看cpu的负载情况，差别不是
 
 #### 1.nginx事件处理模型选择
 
-根据不同的系统选择不同的事件处理模型，可供选择有“kqueue | rstig | epoll | /dev/poll | select | poll  ”
+根据不同的系统选择不同的事件处理模型，可供选择有：“kqueue  |  rstig |  epoll  |  /dev/poll |  select |  poll ”。
 
 ```
 events {
     use epoll;
 }
 ```
-select ,poll 是标准的工作模式。kqueue ，epoll 是高效模式，epoll常用在linux平台，kqueue 常用在BSD系统，solaris系统中常用/dev/poll 。
+select ，poll是标准的工作模式。kqueue ，epoll是高效模式，epoll常用在linux平台，kqueue 常用在BSD系统，solaris系统中常用/dev/poll 。
 
 #### 2.单进程允许客户端最大连接数
 
@@ -167,8 +167,8 @@ http｛
         }
         location ~ .*\.(php|php5)?$ {
            fastcgi_pass  127.0.0.1:9000;
-                            fastcgi_index index.php;
-                            include fastcgi.conf;
+           fastcgi_index index.php;
+           include fastcgi.conf;
            fastcgi_cache ngx_fcgi_cache;
            fastcgi_cache_valid 200 302 1h;   #200,302 应答缓存1小时
            fastcgi_cache_valid 301 1d;  #301 应答缓存1天
@@ -203,8 +203,7 @@ http {
   gzip_buffers     4 16k;   #压缩缓冲区大小
   gzip_http_version 1.1;    #压缩版本
   gzip_comp_level 2;    #压缩比率，1是压缩比例最小，处理速度最快，9是压缩比大，速度最慢
-  #支持的压缩类型
-  gzip_types       text/plain application/x-javascript text/css application/xml;
+  gzip_types text/plain application/x-javascript text/css application/xml; #支持的压缩类型
   gzip_vary on;     #支持前端的缓存服务器缓存经过gzip压缩的页面。
 }
 ```
