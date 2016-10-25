@@ -3,7 +3,7 @@ layout: post
 title: "性能优化之MySQL优化"
 description: ""
 category: mysql
-tags: []
+tags: [mysql]
 ---
 
 
