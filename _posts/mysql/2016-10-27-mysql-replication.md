@@ -205,6 +205,7 @@ mysql -uroot -p'mark123' -S /data/3307/msyql.sock -e "show slave status\G;"
 mysql -uroot -p'mark123' -S /data/3307/msyql.sock -e "show slave status\G" | egrep "IO_Running|SQL_Running|Behind_Master"
 ```
 **参数说明**
+
 * Slave_IO_Running:Yes,这个是I/O线程状态，负责从主库读取binlog日志，并写入中继文件。
 * Slave_SQL_Running:Yes,这个是sql线程状态，负责读取中继日志中的数据并转换成sql执行。
 * Second_Behind_Master:0 ,这个是主从复制从库比主库延迟的秒数。
