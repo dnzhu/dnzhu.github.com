@@ -156,11 +156,9 @@ innodb_file_per_table = 0
 quick
 max_allowed_packet = 16M
 
-
 [mysqld_safe]
 log-error =/data/3306/mysql_dnzhu.err #
 pid-file=/data/3306/mysqld.pid #
-
 ```
 这是3306端口服务的配置文件，3307端口的配置文件一样，只需要把所有的**3306替换成3307**,server-id换一个值。
 
@@ -271,7 +269,6 @@ restart)
 *)
     printf "usage : /data/${port}/mysql{start|stop|restart}\n"
 esac
-
 ```
 快捷启动命令：/data/3306/mysql start | stop | restart
 
