@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "memcached在企业中的实际应用"
+title: "memcached之实际应用"
 description: ""
 category: cache
 tags: []
