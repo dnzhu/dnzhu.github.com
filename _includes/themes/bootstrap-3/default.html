@@ -80,16 +80,21 @@
       </div>
   
     </div>
-    <!--
     <div id="footer">
       <div class="container">
         <p>&copy;2013 - {{ site.time | date: '%Y' }} {{ site.author.name }}
-          with help from <a href="#" target="_self">Bootstrap</a>
+          with help from Bootstrap
+          <a class="github" href="https://github.com/dnzhu/dnzhu.github.com" target="_blank" title="Fork me on GitHub"> <img width="20" height="20" align="Fork me on GitHub" src="{{ HOME_PATH }}imgs/auth-github.png" />
+                </a>
+          <a class="zhihu" href="https://www.zhihu.com/people/zhu-zhu-40-46" target="_blank" title="Fork me on zhihu"> <img width="20" height="20" align="Fork me on GitHub" src="{{ HOME_PATH }}imgs/zhihu.jpg" />
+                </a>
+          <a class="rss" href="/rss.xml" target="_blank" title="RSS"> <img width="19" height="19" alt="RSS" src="{{ HOME_PATH }}imgs/rss.jpg" />
+                </a>
         </p>
       </div>
     </div>
-    -->
-    {% include JB/analytics %}
+    
+    <!-- {% include JB/analytics %} -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{ ASSET_PATH }}/bootstrap/js/jquery-1.9.1.min.js"></script>
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>

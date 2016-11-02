@@ -1,4 +1,5 @@
 {% if site.JB.comments.provider and page.comments != false %}
+{% case site.JB.comments.provider %}
 {% when "duoshuo" %}
   {% include JB/comments-providers/duoshuo %}
 {% when "disqus" %}
