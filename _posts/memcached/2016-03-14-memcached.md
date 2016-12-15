@@ -47,6 +47,18 @@ memcached采用了slab内存分配机制。过程如下：
 * 2.新增数据对象存储时，因memcached中保存着slab内空闲chunk列表，它会根据该列表选择chunk，然后将数据缓存于其中。
 * 3.当有数据存入时，memcached根据接收到的数据大小，会选择最适合数据大小的slab。
 
+### memcached采用了slab内存分配的缺点：
+
+* 1.chunk存储item浪费空间。由于预先分配特定长度的内存，不可避免存储空间浪费，比如：将100字节的数据存储到128字节的chunk中，剩余的28字节就浪费了。
+
+#### 优化方案：
+第一，尽量把数据大小相同的数据存入同一台mamcached中。
+第二，在启动mamcached的时候，指定-f参数，控制内存组之间的大小差异，默认值是1.25。
+
+* 2.slab尾部剩余空间。由于slab class是由多个chunk块组成，最后的可能会有剩余的空间不够容纳一个chunk，导致这部分内存空间浪费。
+
+解决办法就是：slab的大小等于chunk大小的整数倍。
+
 ### memcached才有LRU对象清除机制
 
 memcached 不会主动去检测item对象是否过期，而是进行get操作时检查是否过期。如果内存被数据填充满了以后，采用最近最少使用算法释放内存空间。
@@ -54,6 +66,54 @@ memcached 不会主动去检测item对象是否过期，而是进行get操作时
 但memcached中删除一个对象，一般不是立即释放内存空间，而是做删除标记，将指针放入slot回收插槽，下次分配直接使用。
 
 ---
+
+### memcached服务安装
+
+#### 先安装libevent以及nc
+
+```
+yum install libevent libevent-devel nc -y
+rpm -qa libevent libevent-devel nc
+```
+
+#### 安装memcached
+
+```
+yum install memcached -y
+rpm -qa memcached
+```
+
+### 启动memcached服务
+
+```
+which memcached
+memcached -m 64m -p 11211 -d -u root -c 9000
+memcached -m 64m -p 11212 -d -u root -c 9000  #可以同时开启多个memcached实例
+#将启动命令加入/etc/rc.local文件中，即可开机启动。
+```
+
+### 向memcached中写入/取出数据
+
+```
+#set
+printf "set key1 0 0 5 \r\ndnzhu\r\n" | nc 127.0.0.1 11211  #STORED  
+#get
+printf "get key1\r\n" | nc 127.0.0.1 11211  #dnzhu
+#delete
+printf "delete key1\r\n" | nc 127.0.0.1 11211  #DELETED
+```
+
+参数格式：command key flags exptime bytes\r\n data\r\n
+
+
+### 关闭memcached服务
+
+```
+#关闭所有
+killall memcached 或 pkill memcached
+#关闭某个
+kill `cat /var/run/11211.pid`
+```
 
 ### 分布式缓存集群设计思想
 
