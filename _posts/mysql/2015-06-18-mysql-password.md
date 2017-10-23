@@ -1,10 +1,12 @@
----
+----
+
 layout: post
 title: "mysql忘记密码"
 description: ""
 category: mysql
 tags: [mysql]
----
+
+----
 
 ### 问题是？
 
@@ -35,6 +37,8 @@ ps ： 在windows环境下，找到mysql.ini文件，在[mysqld] 后面增加 �
 
 ```
 
+----
+
 ### 3.登录并修改MySQL的root密码
 
 ```
@@ -46,7 +50,12 @@ flush privileges ;
 
 ```
 
+----
+
+
 ### 4.恢复mysql配置文件，并重启。
+
+----
 
 
 
