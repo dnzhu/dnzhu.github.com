@@ -141,7 +141,20 @@ ln /usr/hello.html  /tmp/test/hello.html            //创建硬链接文件
 * -z    通过gzip格式解压。
 * --remove-files    打包后删除源文件。
 
-demo ：
+demo1(打包)：
+
+```
+tar czvf my.tar file1   //单个文件压缩打包 
+
+tar czvf my.tar file1 file2,...     //多个文件压缩打包 
+
+tar czvf my.tar dir1        //单个目录压缩打包 
+
+tar czvf my.tar dir1 dir2      //多个目录压缩打包
+
+```
+
+demo2(解压)：
 
 ```
 tar -zxvf   bootstrap.tar.gz        //解压gzip文件
