@@ -1,12 +1,10 @@
-----
-
+---
 layout: post
 title: "mysql忘记密码"
 description: ""
 category: mysql
 tags: [mysql]
-
-----
+---
 
 ### 问题是？
 
