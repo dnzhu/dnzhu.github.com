@@ -16,6 +16,7 @@ http {
     server_tokens off;
     ……
 }
+
 ```
 ---
 
@@ -44,8 +45,6 @@ ps :或者在编译nginx的时候就指定用户和所属组
 
 ```
 
----
-
 **3.nginx 配置参数优化**
 
     搭建服务器时，worker进程数最开始的设置等于cpu的核数，高并发场合下可以考虑将进程数提高至cpu * 2，也可以再大点，根据具体的硬件和业务来调整。
@@ -53,11 +52,12 @@ ps :或者在编译nginx的时候就指定用户和所属组
 ```
 #查看cpu的核心数
     grep processor /proc/cpuinfo | wc -l
+
 #编辑nginx的配置文件
     vim ngnix.conf
     worker_processes  2;
+```
 
----
 
 **4.绑定不同的nginx进程到不同的cpu上。**
 
@@ -75,7 +75,6 @@ ps： 配置该项过后，进行top命令查看cpu的负载情况，差别不�
 ---
 
 ### events 优化
-
 
 **1.nginx事件处理模型选择**
 
