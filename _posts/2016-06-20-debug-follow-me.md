@@ -82,4 +82,20 @@ tags: []
 
     php5.2 与php7之间有一些不兼容的写法。程序升级php版本的时候要注意。
 
+    ```
+    1、不支持mysql扩展，改用mysqli。
+
+    2、不支持mongo扩展，改用mongodb扩展。 
+
+    3、不支持SQLite，改用SQLite3。
+
+    4、preg_replace PHP7不再支持 /e修饰符，请用 preg_replace_callback() 代替 。
+
+    5、不支持ereg_*的正则函数，使用preg_replace。
+
+    6、不支持set_magic_quotes_runtime。
+
+    7、不支持实参作为引用类型
+    ```
+    
 ----
