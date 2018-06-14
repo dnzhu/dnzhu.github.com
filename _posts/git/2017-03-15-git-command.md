@@ -107,5 +107,12 @@ tags: []
 ```
     git fetch -p 更新本地分支
     git branch --track feature_v1 origin/feature_v1   检出远程分支到本地
-    
+
+```
+
+#### 丢弃本地修改
+
+```
+    git checkout 文件名     //丢弃某个文件
+    git checkout            //放弃所有文件的所有修改
 ```
