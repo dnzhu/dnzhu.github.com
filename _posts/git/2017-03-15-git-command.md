@@ -50,6 +50,14 @@ tags: []
     git push git@github.com:path/xxx.git        //将本地仓库代码提交到远程git仓库。
 ```
 
+#### 版本回退
+    
+```
+    git reflog  //查看版本commit id
+    git reset --hard  commit_id   //回退版本
+    git push origin branch_name -f   //强制推送到远程分支
+```
+
 ---
 
 #### 分支管理
@@ -81,10 +89,23 @@ tags: []
 #### 暂存代码 
 
 ```
-    git stach       //把当前工作现场“储藏”起来。
+    #冲突解决
+    git stach       //把当前工作现场“储藏”起来
+    git pull origin branch-name  //拉取远程分支
+    git stash pop   //恢复stach区的内容并删除stach区
+    git push origin branch-name   //推送到远程分支
+
+    #补充
     git stach list  //查看隐藏的内容。
-    git stash pop   //恢复stach区的内容并删除stach区。
     git stach apply //恢复stach区的内容不删除stach区。
     git stach apply stash@{0}   //恢复某个版本的内容。
 ```
 ---
+
+#### 检出远程分支到本地，并关联远程对应分支。
+
+```
+    git fetch -p 更新本地分支
+    git branch --track feature_v1 origin/feature_v1   检出远程分支到本地
+    
+```
