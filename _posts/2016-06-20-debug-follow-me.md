@@ -77,12 +77,13 @@ tags: []
 
     2.’保留utf-8 BOM
     :set bomb
+    
 
 #### 7.php版本问题
 
     php5.2 与php7之间有一些不兼容的写法。程序升级php版本的时候要注意。
 
-    ```
+
     1、不支持mysql扩展，改用mysqli。
 
     2、不支持mongo扩展，改用mongodb扩展。 
@@ -96,6 +97,6 @@ tags: []
     6、不支持set_magic_quotes_runtime。
 
     7、不支持实参作为引用类型
-    ```
-    
+
+
 ----
