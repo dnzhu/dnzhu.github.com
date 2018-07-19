@@ -108,14 +108,15 @@ fmt.Printf("%v\n", append(s1, s2...))
 
 ```
 slice := []int{10,20,30,40}
-//for range
+
 for k,v := range slice {
     fmt.Printf("index:%d,value:%d\n",k,v)
 }
-// 传统for循环
+
 for index :=2;index < len(slice);index++ {
     fmt.Printf("index:%d,value:%d\n", index, slice[index])
 }
+
 ```
 
 **创建二维切片**
