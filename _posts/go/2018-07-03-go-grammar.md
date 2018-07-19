@@ -49,3 +49,87 @@ tags: [go]
     使用指针作为接收者声明的方法，只能在接口类型的值是一个指针的时候被调用。使用值作为接收者声明的方法，在接口类型的值为值或者指针时，都可以被调用。
 
 ---
+
+### 数组使用
+
+    数组是一个长度固定的数据类型，用于存储一段具有相同的类型的元素的连续块。数组存储的类型可以是内置类型，如整型或者字符串，也可以是某种结构类型。
+
+#### 声明和初始化数组
+
+```
+var arr [5]int    //初始化为零值
+arr := [5]int{1,2,3,4,5}    //初始化并赋值
+arr := [...]int{1,2,3,4,5}  //容量由初始化值决定
+arr := [5]int{1:10,2:20}  //指定某个值
+
+```
+---
+
+### 切片的实现和使用
+
+#### 申明和初始化切片
+
+```
+arr := []int   //空切片
+var arr make([]string, 5)  //切片的长度和容量为5
+arr := make([]string, 5, 6)   //切片长度为5,容量为6
+```
+
+ps1:不管是使用 nil 切片还是空切片，对其调用内置函数append、len 和cap 的效果都是一样的。
+
+ps2:切片的容量不能小于切片长度。切片和数组区别在于，数组固定长度，切片不固定长度。
+
+
+#### 使用切片创建切片
+
+```
+slice := []int{10, 20, 30, 40, 50}
+newSlice := slice[1:3]
+newSlice = append(newSlice,90)
+len := len(newSlice)  // len=2
+cap := cap(newSlice)  // cap=4 
+
+otherSlice := slice[2:3:4]
+len := len(otherSlice)  // len=1
+cap := cap(otherSlice)  // cap=2 
+
+```
+
+函数append 会智能地处理底层数组的容量增长。在切片的容量小于1000 个元素时，总是会成倍地增加容量。一旦元素个数超过1000，容量的增长因子会设为1.25，也就是会每次增加25%的容量。
+
+---
+
+### 映射
+
+    映射是一个存储键值对的无序集合。之所以是无序的，因为映射的底层实现是用的散列表。
+
+#### 创建和初始化映射
+
+```
+//make初始化
+dict := make(map[string]int)
+//字面量初始化
+dict := map[string]string{"red":"#ffffff","black":"#000000"}
+
+//使用切片作为map的值
+dict := map[int][]string{}
+
+```
+
+#### 映射的使用
+
+```
+colors := map[string]string{"red": "#ffffff", "blue": "#cccccc"}
+value, isTure := colors["red"]
+if isTure {
+    fmt.Printf("val1:%s\n", value)
+}
+
+val := colors["blue"]
+if val != "" {
+    fmt.Printf("val2:%s \n", val)
+}
+
+delete(colors, "red")   //从map中删除某个key
+
+```
