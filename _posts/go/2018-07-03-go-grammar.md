@@ -34,3 +34,18 @@ tags: [go]
     如果声明函数的时候带有接收者，则意味着声明了一个方法。这个方法会和指定的接收者的类型绑在一起。
 
 ---
+
+### 值类型与指针类型的不同
+
+```
+    //申明一个方法，指定defaultMatcher类型的值作为接收者
+    func (m defaultMatcher) Search (feed *Feed, searchTerm string)
+    //申明一个方法，指定defaultMatcher类型的指针作为接收者
+    func (m *defaultMatcher) Search (feed *Feed, searchTerm string)
+```
+
+两者区别：
+
+    使用指针作为接收者声明的方法，只能在接口类型的值是一个指针的时候被调用。使用值作为接收者声明的方法，在接口类型的值为值或者指针时，都可以被调用。
+
+---
