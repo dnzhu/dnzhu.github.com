@@ -104,16 +104,6 @@ s2 := []int{3,4}
 fmt.Printf("%v\n", append(s1, s2...))
 ```
 
-**迭代切片**
-
-```
-slice := []int{10,20,30,40}
-
-for k,v := range slice {
-    fmt.Printf("index:%d,value:%d\n",k,v)
-}
-```
-
 **创建二维切片**
 
 ```
