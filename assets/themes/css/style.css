@@ -22,8 +22,12 @@ ul li {
   list-style-type:none;
 }
 
-h1, h2, h3, h4 {
-  color: #f22430;
+h1 {
+  color: #3B98D8;
+}
+
+h2, h3, h4 {
+  color: #434881;
 }
 #footer {
   background-color: #fdcd60;
