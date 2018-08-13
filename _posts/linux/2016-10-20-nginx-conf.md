@@ -45,9 +45,9 @@ http {
 
     grep processor /proc/cpuinfo | wc -l
 
-#编辑nginx的配置文件
+#编辑 nginx 的配置文件
 
-    vim ngnix.conf
+    vim nginx.conf
     worker_processes  2;
 
 #### 4.绑定不同的nginx进程到不同的cpu上。
@@ -55,7 +55,7 @@ http {
 #编辑nginx的配置文件
 
 ```
-vim ngnix.conf
+vim nginx.conf
 worker_processes  4;
 #0001 0010 0100 1000是掩码，分别代表1,2,3,4核cpu。
 worker_cpu_affinity 0001 0010 0100 1000; 

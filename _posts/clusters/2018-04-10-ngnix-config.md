@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ngnix 配置优化"
+title: "nginx 配置优化"
 description: ""
 category: cluster
 tags: []
@@ -54,7 +54,7 @@ ps :或者在编译nginx的时候就指定用户和所属组
     grep processor /proc/cpuinfo | wc -l
 
 #编辑nginx的配置文件
-    vim ngnix.conf
+    vim nginx.conf
     worker_processes  2;
 ```
 
@@ -62,8 +62,8 @@ ps :或者在编译nginx的时候就指定用户和所属组
 **4.绑定不同的nginx进程到不同的cpu上。**
 
 ```
-#编辑nginx的配置文件
-    vim ngnix.conf
+#编辑 nginx 的配置文件
+    vim nginx.conf
     worker_processes  4;
 #0001 0010 0100 1000是掩码，分别代表1,2,3,4核cpu。
     worker_cpu_affinity 0001 0010 0100 1000; 
