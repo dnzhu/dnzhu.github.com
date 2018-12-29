@@ -26,8 +26,6 @@ group: navigation
 
 **wechat:dnzhu123**
 
-**QQ:422298140**
-
 **email：dnzhu_master@126.com**
 
 **github：https://github.com/dnzhu**
