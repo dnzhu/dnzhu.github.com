@@ -169,4 +169,5 @@ mysql -uroot -p databasename < creatab.sql
 
 ```
 mysql -uroot -p databasename < data.sql
+
 ```

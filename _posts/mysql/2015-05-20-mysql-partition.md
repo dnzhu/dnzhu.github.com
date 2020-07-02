@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "mysql的分区(水平分表)"
+title: "mysql的分区"
 description: ""
 category: mysql
 tags: [mysql]
@@ -44,15 +44,17 @@ PS: MYSQL大部分存储引擎(MyISAM,InnoDB,Memory等)支持创建分区表，�
 
 ### range分区
 
+利用取值范围将数据分成分区,分区要连续并且不能相互重叠。
+
 创建range分区
 
 ```
 create table emp (id int not null ,ename varchar(30) not null default '', separated DATE not null default '9999-12-31',job varchar(30) not null ,store_id int not null)
 ENGINE=INNODB
 PARTITION BY RANGE(store_id)(
-    PARTITION p0 values less then (10),
-    PARTITION p1 values less then (20),
-    PARTITION p2 values less then MAXVALUE
+    PARTITION p0 values less than (10),
+    PARTITION p1 values less than (20),
+    PARTITION p2 values less than MAXVALUE
 );
 ```
 
@@ -62,14 +64,53 @@ MYSQL5.5 改进了range分区功能，提供了range columns分区支持非整�
 create table emp (id int not null ,ename varchar(30) not null default '', separated DATE not null default '9999-12-31',job varchar(30) not null ,store_id int not null)
 ENGINE=INNODB
 PARTITION BY RANGE COLUMNS (separated) (
-    PARTITION p0 values less then ('2000-01-01'),
-    PARTITION p1 values less then ('2008-01-01'),
-    PARTITION p2 values less then ('2016-01-01')
+    PARTITION p0 values less than ('2000-01-01'),
+    PARTITION p1 values less than ('2008-01-01'),
+    PARTITION p2 values less than ('2016-01-01')
+);
+
+```
+# range 分区应用场景：
+
+    * 需要删除某部分历史数据的时候，可以直接删除分区就ok。
+    * 包含分区键的查询，可以很快的定位到记录。
+
+----
+
+list 分区
+
+list 分区是一个枚举列表值的聚合，range分区是一个连续值的聚合。
+
+创建list分区
+
+
+```
+create table books (
+    add_date DATE NOT NULL,
+    category INT,
+    amount decimal(10,3)
+)PARTITION BY LIST (category) (
+    PARTITION P0 VALUES IN (3,5),
+    PARTITION P1 VALUES IN (1,10),
+    PARTITION P2 VALUES IN (4,9),
+    PARTITION P3 VALUES IN (2),
+    PARTITION P4 VALUES IN (6)
 );
 
 ```
 
+* mysql5.5 之前的版本，LIST分区只能匹配整数列表。5.5之后的版本支持非整数列表。
+
 ----
 
+hash 分区
+
+mysql支持两种hash分区，常规hash分区和线性hash分区。常规hash分区就是使用取模算法。线性hash分区是使用2的幂运算法则。
+
+----
+
+mysql分区处理NULL值的方式，range分区。null值当作最小值处理。list分区null值必须在枚举列表中。否则将不被接受。hash/key分区中，null值会被当作0来处理。
+
+----
 
 
