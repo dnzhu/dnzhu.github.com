@@ -1,0 +1,153 @@
+---
+layout: post
+title: "mysql主从docker环境搭建"
+description: ""
+category: mysql
+tags: [mysql, cluster]
+---
+
+> mysql主从复制并不是数据库从磁盘上文件直接拷贝，而是通过mysql的binlog日志复制到要同步的服务器本地，然后在本地的mysql线程读取日志里面的sql语句，重新应用到mysql数据库中。
+
+---
+
+
+### 主从复制应用场景
+
+
+* 1.从服务器作为主服务器的实时数据备份
+
+    为了增强架构的健壮性，当主服务宕机时，自动切换到从服务器上。维持程序的稳定性。
+
+* 2.主从复制实现读写分离，从服务器实现负载均衡
+
+    主从服务器可以通过**程序**来实现主从读写分离，更新数据的业务在主库上进行操作，查询的请求去从库查询。
+
+* 3.把多个从服务器根据业务重要性进行拆分
+
+    比如，有为供外部访问的web服务器，也有内部DBA用来数据备份的从服务器，还有公司内部oa系统的服务器等，分离开后，降低单服务器的访问压力。也不至于影响整体的业务。
+
+---
+
+
+
+**过程描述**
+
+* 1）主库db的更新事件(update、insert、delete)被写到binlog
+
+* 2）主库创建一个binlog dump thread，把binlog的内容发送到从库
+
+* 3）从库启动并发起连接，连接到主库
+
+* 4）从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log
+
+* 5）从库启动之后，创建一个SQL线程，从relay log里面读取内容，从Exec_Master_Log_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db
+
+
+## 主从复制实战
+
+#### 1.利用docker生成mysql-master主机镜像，以及创建好容器。
+
+```
+    docker run -p 3307:3306 --name mysql-master \
+    -v /Users/lee/docker/mydata/mysql-slave/log:/var/log/mysql \
+    -v /Users/lee/docker/mydata/mysql-slave/data:/var/lib/mysql \
+    -v /Users/lee/docker/mydata/mysql-slave/conf:/etc/mysql \
+    -e MYSQL_ROOT_PASSWORD=root \
+    -d mysql:5.7
+
+```
+
+#### 2.配置mysql-master文件配置。my.cnf。
+
+```
+    [mysqld]
+    # 设置server-id，局域网中需要唯一
+    server_id=101
+    ## 指定不需要同步的数据库名
+    binlog-ignore-db=mysql
+    ##开启二进制日志功能
+    log-bin=mall-mysql-bin
+    ## 设置二进制日志使用缓存大小
+    binlog_cache_size=1M
+    # 设置使用二进制日志格式
+    binlog_format=mixed
+    # 二进制日志过期清理时间
+    expire_logs_days=7
+    #跳过主从复制中遇到的错误类型
+    slave_skip_errors=1062
+```
+
+#### 3.进入mysql-master主机容器，创建主从复制的账号。
+
+```
+    docker exec -it mysql-master /bin/bash .  # 进入容器
+
+    # 创建mysql账号
+    create user 'slave'@'%' identified by '123456';
+    grant replication slave , replication client on *.* to 'slave'@'%';
+
+```
+
+#### 4.利用docker生成mysql-slave主机镜像，并创建好容器。
+
+```
+    docker run -p 3308:3306 --name mysql-slave \
+    -v /Users/lee/docker/mydata/mysql-slave/log:/var/log/mysql \
+    -v /Users/lee/docker/mydata/mysql-slave/data:/var/lib/mysql \
+    -v /Users/lee/docker/mydata/mysql-slave/conf:/etc/mysql \
+    -e MYSQL_ROOT_PASSWORD=root \
+    -d mysql:5.7
+
+```
+
+#### 5.配置mysql- slave相关配置
+
+```
+    [mysqld]
+    # 设置server-id，局域网中需要唯一
+    server_id=102
+    ## 指定不需要同步的数据库名
+    binlog-ignore-db=mysql
+    ##开启二进制日志功能
+    log-bin=mall-mysql-bin
+    ## 设置二进制日志使用缓存大小
+    binlog_cache_size=1M
+    # 设置使用二进制日志格式
+    binlog_format=mixed
+    # 二进制日志过期清理时间
+    expire_logs_days=7
+    #跳过主从复制中遇到的错误类型
+    slave_skip_errors=1062
+    #配置中继日志 relay_log
+    relay_log=mall-mysql-relay-bin
+    #slave将复制事件写入自己的二进制日志
+    log_slave_updates=1
+    #slave 设置为只读
+    read_only=1
+
+```
+
+#### 6.进入mysql-slave主机，并且关联上mysql-master主机。
+
+```
+    # 从库关联主库
+    change master to master_host="主机ip", master_user='slave', master_password='123456',master_port=3307,master_log_file='mall-mysql-bin.000002', master_log_pos=617,master_connect_retry=30; 
+
+    demo: change master to master_host="192.168.31.52", master_user='slave', master_password='123456',master_port=3307,master_log_file='mall-mysql-bin.000002', master_log_pos=617,master_connect_retry=30; 
+
+```
+
+#### 7.从库中开启主从同步，查看从库是否开启。
+
+```
+    start slave；
+    show  slave status \G;
+
+```
+
+#### 8.测试主从同步。
+
+
+
+
+
