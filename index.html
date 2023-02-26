@@ -1,44 +1,41 @@
 ---
 layout: page
 title: 朱永志
-tagline: 专注于web互联网开发
+tagline: 多年软件开发经验和系统运维经验，擅长高并发高可用架构，擅长分布式集群，熟练掌握容器技术，以及微服务。
 ---
 {% include JB/setup %}
 
 <ul class="posts">
   {% for post in site.posts limit:200 %}
-    {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
-    {% capture this_month %}{{ post.date | date: "%B" }}{% endcapture %}
-    {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
-    {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
+  {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+  {% capture this_month %}{{ post.date | date: "%B" }}{% endcapture %}
+  {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+  {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
 
-    {% if forloop.first %}
-      <h2>{{this_year}}</h2>
-      <h3>{{this_month}}</h3>
-      <ul>
+  {% if forloop.first %}
+  <h2>{{this_year}}</h2>
+  <h3>{{this_month}}</h3>
+  <ul>
     {% endif %}
 
-    <li><span>{{ post.date | date: "%B %e, %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    <li><span>{{ post.date | date: "%B %e, %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title
+        }}</a></li>
 
     {% if forloop.last %}
-      </ul>
-    {% else %}
-      {% if this_year != next_year %}
-        </ul>
-        <h2>{{next_year}}</h2>
-        <h3>{{next_month}}</h3>
-        <ul>
-      {% else %}
-        {% if this_month != next_month %}
-          </ul>
-          <h3>{{next_month}}</h3>
-          <ul>
-        {% endif %}
-      {% endif %}
-    {% endif %}
+  </ul>
+  {% else %}
+  {% if this_year != next_year %}
+</ul>
+<h2>{{next_year}}</h2>
+<h3>{{next_month}}</h3>
+<ul>
+  {% else %}
+  {% if this_month != next_month %}
+</ul>
+<h3>{{next_month}}</h3>
+<ul>
+  {% endif %}
+  {% endif %}
+  {% endif %}
   {% endfor %}
 </ul>
-
-
-
-
